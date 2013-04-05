@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtomPlayer", "AtomPlayer\AtomPlayer.csproj", "{EE2D026E-FDBA-4638-AD9F-B995B0F70D0F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtomPlayer_OLD", "AtomPlayer\AtomPlayer_OLD.csproj", "{EE2D026E-FDBA-4638-AD9F-B995B0F70D0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPlayer.DotNet", "MPlayer.DotNet\MPlayer.DotNet.csproj", "{8F52348B-B5A2-4169-B24E-24A82E0CB8AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibMPlayerCommon", "LibMPlayerCommon\LibMPlayerCommon.csproj", "{5D3616D0-160D-4601-AB67-E1ED9111C676}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtomPlayer", "AtomPlayer2\AtomPlayer.csproj", "{A90E6EBC-7610-4C9A-BD8D-E8B4F0210DF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,16 +27,28 @@ Global
 		{EE2D026E-FDBA-4638-AD9F-B995B0F70D0F}.Release|Mixed Platforms.Build.0 = Release|x86
 		{EE2D026E-FDBA-4638-AD9F-B995B0F70D0F}.Release|x86.ActiveCfg = Release|x86
 		{EE2D026E-FDBA-4638-AD9F-B995B0F70D0F}.Release|x86.Build.0 = Release|x86
-		{8F52348B-B5A2-4169-B24E-24A82E0CB8AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8F52348B-B5A2-4169-B24E-24A82E0CB8AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8F52348B-B5A2-4169-B24E-24A82E0CB8AA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{8F52348B-B5A2-4169-B24E-24A82E0CB8AA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{8F52348B-B5A2-4169-B24E-24A82E0CB8AA}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{8F52348B-B5A2-4169-B24E-24A82E0CB8AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8F52348B-B5A2-4169-B24E-24A82E0CB8AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8F52348B-B5A2-4169-B24E-24A82E0CB8AA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{8F52348B-B5A2-4169-B24E-24A82E0CB8AA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{8F52348B-B5A2-4169-B24E-24A82E0CB8AA}.Release|x86.ActiveCfg = Release|Any CPU
+		{5D3616D0-160D-4601-AB67-E1ED9111C676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D3616D0-160D-4601-AB67-E1ED9111C676}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D3616D0-160D-4601-AB67-E1ED9111C676}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5D3616D0-160D-4601-AB67-E1ED9111C676}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5D3616D0-160D-4601-AB67-E1ED9111C676}.Debug|x86.ActiveCfg = Debug|x86
+		{5D3616D0-160D-4601-AB67-E1ED9111C676}.Debug|x86.Build.0 = Debug|x86
+		{5D3616D0-160D-4601-AB67-E1ED9111C676}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D3616D0-160D-4601-AB67-E1ED9111C676}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D3616D0-160D-4601-AB67-E1ED9111C676}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5D3616D0-160D-4601-AB67-E1ED9111C676}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5D3616D0-160D-4601-AB67-E1ED9111C676}.Release|x86.ActiveCfg = Release|x86
+		{5D3616D0-160D-4601-AB67-E1ED9111C676}.Release|x86.Build.0 = Release|x86
+		{A90E6EBC-7610-4C9A-BD8D-E8B4F0210DF4}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{A90E6EBC-7610-4C9A-BD8D-E8B4F0210DF4}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{A90E6EBC-7610-4C9A-BD8D-E8B4F0210DF4}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{A90E6EBC-7610-4C9A-BD8D-E8B4F0210DF4}.Debug|x86.ActiveCfg = Debug|x86
+		{A90E6EBC-7610-4C9A-BD8D-E8B4F0210DF4}.Debug|x86.Build.0 = Debug|x86
+		{A90E6EBC-7610-4C9A-BD8D-E8B4F0210DF4}.Release|Any CPU.ActiveCfg = Release|x86
+		{A90E6EBC-7610-4C9A-BD8D-E8B4F0210DF4}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{A90E6EBC-7610-4C9A-BD8D-E8B4F0210DF4}.Release|Mixed Platforms.Build.0 = Release|x86
+		{A90E6EBC-7610-4C9A-BD8D-E8B4F0210DF4}.Release|x86.ActiveCfg = Release|x86
+		{A90E6EBC-7610-4C9A-BD8D-E8B4F0210DF4}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

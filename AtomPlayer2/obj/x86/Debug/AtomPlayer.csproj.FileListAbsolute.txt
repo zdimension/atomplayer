@@ -1,0 +1,2 @@
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer2\obj\x86\Debug\AtomPlayer.exe
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer2\obj\x86\Debug\AtomPlayer.pdb

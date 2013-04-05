@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
+using System.IO;
+
 namespace AtomPlayer
 {
     static class Program
@@ -15,7 +17,9 @@ namespace AtomPlayer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             Application.Run(new MainWindow());
+
         }
     }
 }
