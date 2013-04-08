@@ -5,14 +5,14 @@ Copyright 2010 (C) Peter Gill <peter@majorsilence.com>
 This file is part of LibMPlayerCommon.
 
 LibMPlayerCommon is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3 of the License, or
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
 (at your option) any later version.
 
 LibMPlayerCommon is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
@@ -28,7 +28,31 @@ namespace LibMPlayerCommon
     public class BackendPrograms
     {
 
-        private static string OSPlatform()
+        private string _mplayerPath;
+        private string _mencoderPath;
+
+        public BackendPrograms() 
+        {
+            _mplayerPath = "";
+            _mencoderPath = "";
+        }
+
+        public BackendPrograms(string mplayerPath)
+        {
+
+            _mplayerPath = mplayerPath;
+            _mencoderPath = "";
+        }
+
+        public BackendPrograms(string mplayerPath, string mencoderPath)
+        {
+
+            _mplayerPath = mplayerPath;
+            _mencoderPath = mencoderPath;
+        }
+
+
+        public static string OSPlatform()
         {
             if (System.Environment.OSVersion.Platform == System.PlatformID.Unix || System.Environment.OSVersion.Platform == System.PlatformID.MacOSX)
             {
@@ -49,33 +73,51 @@ namespace LibMPlayerCommon
 
         }
 
-        public static string MPlayer
+        public string MPlayer
         {
             get
             {
                 if (OSPlatform() == "windows")
                 {
-                    string t = System.IO.Path.Combine(CurrentAssemblyDirectory(), "backend");
-                    return System.IO.Path.Combine(t, "mplayer.exe");
+                    if (_mplayerPath != "")
+                    {
+                        return _mplayerPath;
+                    }
+                    return  System.IO.Path.Combine(CurrentAssemblyDirectory(), "mplayer.exe");
                 }
                 else
                 {
+                    if (_mplayerPath != "")
+                    {
+                        return _mplayerPath;
+                    }
+
                     return "mplayer";
                 }
             }
         }
 
-        public static string MEncoder
+        public string MEncoder
         {
             get
             {
                 if (OSPlatform() == "windows")
                 {
-                    string t = System.IO.Path.Combine(CurrentAssemblyDirectory(), "backend");
-                    return System.IO.Path.Combine(t, "mencoder.exe");
+
+                    if (_mencoderPath != "")
+                    {
+                        return _mencoderPath;
+                    }
+
+                    return System.IO.Path.Combine(CurrentAssemblyDirectory(), "mencoder.exe");
                 }
                 else
                 {
+                    if (_mencoderPath != "")
+                    {
+                        return _mencoderPath;
+                    }
+
                     return "mencoder";
                 }
             }

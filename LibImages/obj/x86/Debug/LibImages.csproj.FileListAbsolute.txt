@@ -1,0 +1,4 @@
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\LibImages\bin\x86\Debug\LibImages.dll
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\LibImages\bin\x86\Debug\LibImages.pdb
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\LibImages\obj\x86\Debug\LibImages.dll
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\LibImages\obj\x86\Debug\LibImages.pdb

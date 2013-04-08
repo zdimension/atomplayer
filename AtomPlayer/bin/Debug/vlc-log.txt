@@ -1,0 +1,95 @@
+﻿-- logger module started --
+main debug: using interface module "logger"
+main debug: TIMER module_need() : 85.164 ms - Total 85.164 ms / 1 intvls (Avg 85.164 ms)
+main debug: looking for interface module: 1 candidate
+main debug: using interface module "hotkeys"
+main debug: TIMER module_need() : 9.170 ms - Total 9.170 ms / 1 intvls (Avg 9.170 ms)
+main debug: looking for interface module: 1 candidate
+logger: VLC media player - 2.0.5 Twoflower
+logger: Copyright © 1996-2012 VLC authors and VideoLAN
+logger: 
+Warning: if you cannot access the GUI anymore, open a command-line window, go to the directory where you installed VLC and run "vlc -I qt"
+
+logger: using logger.
+logger debug: opening logfile `vlc-log.txt'
+﻿-- logger module started --
+main debug: using interface module "logger"
+main debug: using interface module "logger"
+main debug: TIMER module_need() : 21.780 ms - Total 21.780 ms / 1 intvls (Avg 21.780 ms)
+main debug: TIMER module_need() : 21.780 ms - Total 21.780 ms / 1 intvls (Avg 21.780 ms)
+﻿-- logger module started --
+main debug: using interface module "logger"
+main debug: TIMER module_need() : 76.650 ms - Total 76.650 ms / 1 intvls (Avg 76.650 ms)
+main debug: looking for interface module: 1 candidate
+main debug: using interface module "hotkeys"
+main debug: TIMER module_need() : 7.319 ms - Total 7.319 ms / 1 intvls (Avg 7.319 ms)
+main debug: looking for interface module: 1 candidate
+logger: VLC media player - 2.0.5 Twoflower
+logger: Copyright © 1996-2012 VLC authors and VideoLAN
+logger: 
+Warning: if you cannot access the GUI anymore, open a command-line window, go to the directory where you installed VLC and run "vlc -I qt"
+
+logger: using logger.
+logger debug: opening logfile `vlc-log.txt'
+﻿-- logger module started --
+main debug: using interface module "logger"
+main debug: using interface module "logger"
+main debug: TIMER module_need() : 18.543 ms - Total 18.543 ms / 1 intvls (Avg 18.543 ms)
+main debug: TIMER module_need() : 18.543 ms - Total 18.543 ms / 1 intvls (Avg 18.543 ms)
+﻿-- logger module started --
+main debug: using interface module "logger"
+main debug: TIMER module_need() : 147.892 ms - Total 147.892 ms / 1 intvls (Avg 147.892 ms)
+main debug: looking for interface module: 1 candidate
+main debug: using interface module "hotkeys"
+main debug: TIMER module_need() : 24.930 ms - Total 24.930 ms / 1 intvls (Avg 24.930 ms)
+main debug: looking for interface module: 1 candidate
+logger: VLC media player - 2.0.5 Twoflower
+logger: Copyright © 1996-2012 VLC authors and VideoLAN
+logger: 
+Warning: if you cannot access the GUI anymore, open a command-line window, go to the directory where you installed VLC and run "vlc -I qt"
+
+logger: using logger.
+logger debug: opening logfile `vlc-log.txt'
+﻿-- logger module started --
+main debug: using interface module "logger"
+main debug: using interface module "logger"
+main debug: TIMER module_need() : 13.069 ms - Total 13.069 ms / 1 intvls (Avg 13.069 ms)
+main debug: TIMER module_need() : 13.069 ms - Total 13.069 ms / 1 intvls (Avg 13.069 ms)
+﻿-- logger module started --
+main debug: using interface module "logger"
+main debug: TIMER module_need() : 98.795 ms - Total 98.795 ms / 1 intvls (Avg 98.795 ms)
+main debug: looking for interface module: 1 candidate
+main debug: using interface module "hotkeys"
+main debug: TIMER module_need() : 6.610 ms - Total 6.610 ms / 1 intvls (Avg 6.610 ms)
+main debug: looking for interface module: 1 candidate
+logger: VLC media player - 2.0.5 Twoflower
+logger: Copyright © 1996-2012 VLC authors and VideoLAN
+logger: 
+Warning: if you cannot access the GUI anymore, open a command-line window, go to the directory where you installed VLC and run "vlc -I qt"
+
+logger: using logger.
+logger debug: opening logfile `vlc-log.txt'
+﻿-- logger module started --
+main debug: using interface module "logger"
+main debug: using interface module "logger"
+main debug: TIMER module_need() : 16.021 ms - Total 16.021 ms / 1 intvls (Avg 16.021 ms)
+main debug: TIMER module_need() : 16.021 ms - Total 16.021 ms / 1 intvls (Avg 16.021 ms)
+﻿-- logger module started --
+main debug: using interface module "logger"
+main debug: TIMER module_need() : 198.379 ms - Total 198.379 ms / 1 intvls (Avg 198.379 ms)
+main debug: looking for interface module: 1 candidate
+main debug: using interface module "hotkeys"
+main debug: TIMER module_need() : 54.914 ms - Total 54.914 ms / 1 intvls (Avg 54.914 ms)
+main debug: looking for interface module: 1 candidate
+logger: VLC media player - 2.0.5 Twoflower
+logger: Copyright © 1996-2012 VLC authors and VideoLAN
+logger: 
+Warning: if you cannot access the GUI anymore, open a command-line window, go to the directory where you installed VLC and run "vlc -I qt"
+
+logger: using logger.
+logger debug: opening logfile `vlc-log.txt'
+﻿-- logger module started --
+main debug: using interface module "logger"
+main debug: using interface module "logger"
+main debug: TIMER module_need() : 14.964 ms - Total 14.964 ms / 1 intvls (Avg 14.964 ms)
+main debug: TIMER module_need() : 14.964 ms - Total 14.964 ms / 1 intvls (Avg 14.964 ms)

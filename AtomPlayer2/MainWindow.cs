@@ -10,10 +10,15 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Threading;
 
+using LibMPlayerCommon;
+using System.IO;
+
 namespace AtomPlayer
 {
     public partial class MainWindow : Form
     {
+        public MPlayer player;
+
         string args = "";
         string currentFile = "";
         bool fullScreen = false;
@@ -21,52 +26,64 @@ namespace AtomPlayer
         {
             InitializeComponent();
 
+            player = new MPlayer(pnlVideo.Handle.ToInt32(), MplayerBackends.Direct3D, Path.Combine(Application.StartupPath, "mplayer\\mplayer2.exe"));
+
             this.MainMenu.Renderer = new Renderers.DarkMenuStripRenderer();
 
             //this.pnlVideo.MouseWheel += new MouseEventHandler(pnlVideo_MouseWheel);
             foreach (Control c in this.Controls)
             {
                 c.MouseWheel += pnlVideo_MouseWheel;
+                c.KeyDown += MainWindow_KeyDown;
             }
 
             this.btnPlayPause.Image = AtomPlayer.Properties.Resources.play;
+
+            player.CurrentPosition += player_CurrentPosition;
+            player.VideoExited += player_VideoExited;
         }
-  Process p = new Process();
+
         private void MainWindow_Load(object sender, EventArgs e)
         {
-          
-            p.StartInfo.FileName = "mplayer\\mplayer2.exe";
-
-            p.StartInfo.UseShellExecute = false;
-            
-            p.StartInfo.RedirectStandardInput = true;
-            args = "-nofs -noquiet -identify -slave ";
-            args += "-nomouseinput -sub-fuzziness 1 ";
-
-            //-wid will tell MPlayer to show output inside our panel
-            args += " -vo direct3d, -ao dsound  -wid ";
-            int id = (int)pnlVideo.Handle;
-            args += id;
-
+        
             //currentFile = @"C:\Users\Tom2\Videos\intro-video.avi";
-            LoadFile(@"C:\Users\Tom2\Videos\intro-video.avi");
+            //LoadFile(@"C:\Users\Tom2\Videos\intro-video.avi");
         }
 
         string currentbtn = "play";
 
 
+        private void player_CurrentPosition(object sender, EventArgs e)
+        {
+            trackTime.Value = player.GetCurrentPosition();
+            TimeSpan t = TimeSpan.FromSeconds(player.GetCurrentPosition());
 
+            string answer = string.Format("{0:D2}:{1:D2}:{2:D2}",
+                            t.Hours,
+                            t.Minutes,
+                            t.Seconds);
+            lblTime.Text = answer;
+        }
+
+        private void player_VideoExited(object sender, EventArgs e)
+        {
+        }
        
 
         private void trackVolume_ValueChanged(object sender, EventArgs e)
         {
+            player.Volume(trackVolume.Value);
             
         }
 
         public void LoadFile(string filePath)
         {
             currentFile = filePath;
-            
+            player.Play(currentFile);
+            //player.LoadFile(currentFile);
+            trackTime.Maximum = player.CurrentPlayingFileLength();
+            btnPlayPause.Enabled = true;
+            currentbtn = "pause";
         }
 
         private void pnlVideo_Scroll(object sender, ScrollEventArgs e)
@@ -129,7 +146,20 @@ FullScreen fsc = new FullScreen();
 
         private void btnPlayPause_Click(object sender, EventArgs e)
         {
-            
+            player.Pause();
+            if (player.CurrentStatus == MediaStatus.Playing)
+            {
+                currentbtn = "play";
+            }
+            else if (player.CurrentStatus == MediaStatus.Paused)
+            {
+                currentbtn = "pause";
+            }
+            else
+            {
+                currentbtn = "play";
+                btnPlayPause.Enabled = false;
+            }
         }
 
 
@@ -199,6 +229,37 @@ FullScreen fsc = new FullScreen();
             {
                 btnPlayPause.Image = AtomPlayer.Properties.Resources.pausedown;
             }
+        }
+
+        
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.M)
+            {
+                player.Mute();
+            }
+            else if (e.KeyCode == Keys.Space)
+            {
+                btnPlayPause_Click(sender, (EventArgs)e);
+            }
+            else if (e.KeyCode == Keys.Left)
+            {
+                player.Seek(-10, Seek.Relative);
+            }
+            else if (e.KeyCode == Keys.Right)
+            {
+                player.Seek(+10, Seek.Relative);
+            }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new About().ShowDialog(this);
+        }
+
+        private void programToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Options("general").ShowDialog(this);
         }
     }
 }

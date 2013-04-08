@@ -1,2 +1,16 @@
 C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer2\obj\x86\Debug\AtomPlayer.exe
 C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer2\obj\x86\Debug\AtomPlayer.pdb
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer2\obj\x86\Debug\AtomPlayer.FullScreen.resources
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer2\obj\x86\Debug\AtomPlayer.MainWindow.resources
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer2\obj\x86\Debug\AtomPlayer.Properties.Resources.resources
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer2\obj\x86\Debug\AtomPlayer.csproj.GenerateResource.Cache
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer2\bin\Debug\AtomPlayer.exe
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer2\bin\Debug\AtomPlayer.pdb
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer2\bin\Debug\LibMplayerCommon.dll
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer2\bin\Debug\MediaSlider.dll
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer2\bin\Debug\LibImages.dll
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer2\bin\Debug\LibMplayerCommon.pdb
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer2\bin\Debug\LibImages.pdb
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer2\obj\x86\Debug\AtomPlayer.csprojResolveAssemblyReference.cache
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer2\obj\x86\Debug\AtomPlayer.About.resources
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer2\obj\x86\Debug\AtomPlayer.Options.resources

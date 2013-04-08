@@ -54,13 +54,17 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlControl = new System.Windows.Forms.Panel();
-            this.btnPlayPause = new System.Windows.Forms.Button();
+            this.lblTime = new System.Windows.Forms.Label();
             this.trackVolume = new MediaSlider.MediaSlider();
             this.trackTime = new MediaSlider.MediaSlider();
             this.pnlVideo = new System.Windows.Forms.Panel();
             this.lblVolumeVideo = new System.Windows.Forms.Label();
             this.tmrVolume = new System.Windows.Forms.Timer(this.components);
             this.tmrVideo = new System.Windows.Forms.Timer(this.components);
+            this.btnPlayPause = new System.Windows.Forms.Button();
+            this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.videoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.audioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainMenu.SuspendLayout();
             this.pnlControl.SuspendLayout();
             this.pnlVideo.SuspendLayout();
@@ -225,6 +229,10 @@
             // 
             // optionsToolStripMenuItem
             // 
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.programToolStripMenuItem,
+            this.videoToolStripMenuItem,
+            this.audioToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
@@ -240,12 +248,14 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // pnlControl
             // 
             this.pnlControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.pnlControl.Controls.Add(this.lblTime);
             this.pnlControl.Controls.Add(this.btnPlayPause);
             this.pnlControl.Controls.Add(this.trackVolume);
             this.pnlControl.Controls.Add(this.trackTime);
@@ -255,22 +265,15 @@
             this.pnlControl.Size = new System.Drawing.Size(823, 100);
             this.pnlControl.TabIndex = 1;
             // 
-            // btnPlayPause
+            // lblTime
             // 
-            this.btnPlayPause.BackColor = System.Drawing.Color.Transparent;
-            this.btnPlayPause.FlatAppearance.BorderSize = 0;
-            this.btnPlayPause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlayPause.ForeColor = System.Drawing.Color.White;
-            this.btnPlayPause.Image = global::AtomPlayer.Properties.Resources.play;
-            this.btnPlayPause.Location = new System.Drawing.Point(12, 53);
-            this.btnPlayPause.Name = "btnPlayPause";
-            this.btnPlayPause.Size = new System.Drawing.Size(32, 32);
-            this.btnPlayPause.TabIndex = 2;
-            this.btnPlayPause.UseVisualStyleBackColor = false;
-            this.btnPlayPause.Click += new System.EventHandler(this.btnPlayPause_Click);
-            this.btnPlayPause.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnPlayPause_MouseDown);
-            this.btnPlayPause.MouseEnter += new System.EventHandler(this.btnPlayPause_MouseEnter);
-            this.btnPlayPause.MouseLeave += new System.EventHandler(this.btnPlayPause_MouseLeave);
+            this.lblTime.AutoSize = true;
+            this.lblTime.ForeColor = System.Drawing.Color.White;
+            this.lblTime.Location = new System.Drawing.Point(770, 30);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(49, 15);
+            this.lblTime.TabIndex = 3;
+            this.lblTime.Text = "00:00:00";
             // 
             // trackVolume
             // 
@@ -387,6 +390,42 @@
             // 
             this.tmrVideo.Interval = 1000;
             // 
+            // btnPlayPause
+            // 
+            this.btnPlayPause.BackColor = System.Drawing.Color.Transparent;
+            this.btnPlayPause.FlatAppearance.BorderSize = 0;
+            this.btnPlayPause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlayPause.ForeColor = System.Drawing.Color.White;
+            this.btnPlayPause.Image = global::AtomPlayer.Properties.Resources.play;
+            this.btnPlayPause.Location = new System.Drawing.Point(12, 53);
+            this.btnPlayPause.Name = "btnPlayPause";
+            this.btnPlayPause.Size = new System.Drawing.Size(32, 32);
+            this.btnPlayPause.TabIndex = 2;
+            this.btnPlayPause.UseVisualStyleBackColor = false;
+            this.btnPlayPause.Click += new System.EventHandler(this.btnPlayPause_Click);
+            this.btnPlayPause.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnPlayPause_MouseDown);
+            this.btnPlayPause.MouseEnter += new System.EventHandler(this.btnPlayPause_MouseEnter);
+            this.btnPlayPause.MouseLeave += new System.EventHandler(this.btnPlayPause_MouseLeave);
+            // 
+            // programToolStripMenuItem
+            // 
+            this.programToolStripMenuItem.Name = "programToolStripMenuItem";
+            this.programToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.programToolStripMenuItem.Text = "Program";
+            this.programToolStripMenuItem.Click += new System.EventHandler(this.programToolStripMenuItem_Click);
+            // 
+            // videoToolStripMenuItem
+            // 
+            this.videoToolStripMenuItem.Name = "videoToolStripMenuItem";
+            this.videoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.videoToolStripMenuItem.Text = "Video";
+            // 
+            // audioToolStripMenuItem
+            // 
+            this.audioToolStripMenuItem.Name = "audioToolStripMenuItem";
+            this.audioToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.audioToolStripMenuItem.Text = "Audio";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -401,9 +440,11 @@
             this.Name = "MainWindow";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MainWindow_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             this.MainMenu.ResumeLayout(false);
             this.MainMenu.PerformLayout();
             this.pnlControl.ResumeLayout(false);
+            this.pnlControl.PerformLayout();
             this.pnlVideo.ResumeLayout(false);
             this.pnlVideo.PerformLayout();
             this.ResumeLayout(false);
@@ -445,6 +486,10 @@
         private System.Windows.Forms.Label lblVolumeVideo;
         private System.Windows.Forms.Timer tmrVolume;
         private System.Windows.Forms.Timer tmrVideo;
+        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.ToolStripMenuItem programToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem videoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem audioToolStripMenuItem;
     }
 }
 

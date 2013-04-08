@@ -5,14 +5,14 @@ Copyright 2010 (C) Peter Gill <peter@majorsilence.com>
 This file is part of LibMPlayerCommon.
 
 LibMPlayerCommon is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3 of the License, or
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
 (at your option) any later version.
 
 LibMPlayerCommon is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Timers;
 
 
 using System.Diagnostics;
@@ -55,26 +56,75 @@ namespace LibMPlayerCommon
     /// </summary>
     public enum MplayerBackends
     {
-        OpenGL,
-		GL, // Simple Version
-		GL2, // Simple Version.  Variant of the OpenGL  video  output  driver.   
-			// Supports  videos larger  than  the maximum texture size but lacks 
-			// many of the ad‐vanced features and optimizations of the gl driver  
-			// and  is  un‐likely to be extended further.
-        Direct3D, // Windows
-		DirectX, // Windows
-		X11, // Linux
-		VESA,
-		Quartz, // Mac OS X
-		CoreVideo, // Mac OS X
-        SDL, // Cross Platform
-		Vdpau, // Linux
-		ASCII, // ASCII art video output driver that works on a text console.
-		ColorASCII, // Color  ASCII  art  video output driver that works on a text console.
-    	Directfb, // Linux.  Play video using the DirectFB library.
-		Wii, // Linux.  Nintendo Wii/GameCube specific video output driver.
-		V4l2, // Linux.   requires Linux 2.6.22+ kernel,  Video output driver for 
-			// V4L2 compliant cards with built-in hardware MPEG decoder.
+        /// <summary>
+        /// This may be the recommened backend on Mac OSX.
+        /// </summary>
+        OpenGL=1,
+        /// <summary>
+        /// Simple Version
+        /// </summary>
+		GL=2,
+        /// <summary>
+        /// Simple Version.  Variant of the OpenGL  video  output  driver.   
+        /// Supports  videos larger  than  the maximum texture size but lacks 
+        /// many of the ad‐vanced features and optimizations of the gl driver  
+        /// and  is  un‐likely to be extended further.
+        /// </summary>
+		GL2=3, 
+        /// <summary>
+        /// Windows. This is the recommened backend on windows.
+        /// </summary>
+        Direct3D=4, 
+        /// <summary>
+        /// Windows
+        /// </summary>
+		DirectX=5, 
+        /// <summary>
+        /// Linux
+        /// </summary>
+		X11=6, 
+		VESA=7,
+        /// <summary>
+        /// Mac OS X
+        /// </summary>
+		Quartz=8, 
+        /// <summary>
+        /// Mac OS X
+        /// </summary>
+		CoreVideo=9, 
+        /// <summary>
+        /// Cross Platform
+        /// </summary>
+        SDL=10,
+        /// <summary>
+        /// Linux
+        /// </summary>
+		Vdpau=11, 
+        /// <summary>
+        /// ASCII art video output driver that works on a text console.
+        /// </summary>
+		ASCII=12, 
+        /// <summary>
+        /// Color  ASCII  art  video output driver that works on a text console.
+        /// </summary>
+		ColorASCII=13,
+        /// <summary>
+        /// Linux.  Play video using the DirectFB library.
+        /// </summary>
+    	Directfb=14, 
+        /// <summary>
+        /// Linux.  Nintendo Wii/GameCube specific video output driver.
+        /// </summary>
+		Wii=15, 
+        /// <summary>
+        /// Linux.   requires Linux 2.6.22+ kernel,  Video output driver for 
+        // V4L2 compliant cards with built-in hardware MPEG decoder.
+        /// </summary>
+		V4l2=16,
+        /// <summary>
+        /// Linux
+        /// </summary>
+        XV=17
 	
 	}
 
@@ -82,25 +132,55 @@ namespace LibMPlayerCommon
     {
         private int _wid;
         private bool _fullscreen;
-        private int mplayerProcessID=-1;
+        private int _mplayerProcessID=-1;
         private MplayerBackends _mplayerBackend;
         private int _currentPosition = 0; // Current position in seconds in stream.
         private int _totalTime = 0; // The total length that the video is in seconds.
         private string currentFilePath;
-
+        private string _mplayerPath="";
+        private BackendPrograms _backendProgram;
 
         public event MplayerEventHandler VideoExited;
+        /// <summary>
+        /// This event is the most accurate way to get the current position of the current playing file.
+        /// Whenever the postion changes this event will notify that the positon has changed with the value
+        /// being the new position (seconds into the file).
+        /// </summary>
+        public event MplayerEventHandler CurrentPosition;
 
+        private System.Timers.Timer _currentPostionTimer;
 
 
         private MPlayer(){}
-        public MPlayer(int wid, MplayerBackends backend)
+        public MPlayer(int wid, MplayerBackends backend) : this(wid, backend, ""){}
+
+        /// <summary>
+        /// Create a new instance of mplayer class.
+        /// </summary>
+        /// <param name="wid">Window ID that mplayer should attach itself</param>
+        /// <param name="backend">The video output backend that mplayer will use.</param>
+        /// <param name="mplayerPath">The full filepath to mplayer.exe.  If mplayerPath is left empty it will search for mplayer.exe in 
+        /// "current directory\backend\mplayer.exe" on windows and mplayer in the path on linux.</param>
+        public MPlayer(int wid, MplayerBackends backend, string mplayerPath)
         {
             this._wid = wid;
             this._fullscreen = false;
             this.MplayerRunning = false;
             this._mplayerBackend = backend;
+            this._mplayerPath = mplayerPath;
+            this.CurrentStatus = MediaStatus.Stopped;
+
+            this._backendProgram = new BackendPrograms(mplayerPath);
+
             MediaPlayer = new System.Diagnostics.Process();
+
+            MediaPlayer.StartInfo.RedirectStandardInput = true;
+
+            // This timer will send an event every second with the current video postion when video
+            // is in play mode.
+            this._currentPostionTimer = new System.Timers.Timer(1000);
+            this._currentPostionTimer.Elapsed += new ElapsedEventHandler(_currentPostionTimer_Elapsed);
+            this._currentPostionTimer.Enabled = true;
 
         }
 
@@ -111,11 +191,11 @@ namespace LibMPlayerCommon
         {
             // Cleanup
 
-            if (this.mplayerProcessID != -1)
+            if (this._mplayerProcessID != -1)
             {
                 try
                 {
-                    System.Diagnostics.Process p = System.Diagnostics.Process.GetProcessById(this.mplayerProcessID);
+                    System.Diagnostics.Process p = System.Diagnostics.Process.GetProcessById(this._mplayerProcessID);
                     if (p.HasExited == false)
                     {
                         p.Kill();
@@ -143,10 +223,9 @@ namespace LibMPlayerCommon
 
 
         /// <summary>
-        /// The process that is running mplayer.  Generally you should not need to interact with it directly.  But it is left open so
-        /// it is possible to send commands that are not covered by this library and read output etc....
+        /// The process that is running mplayer.
         /// </summary>
-        public System.Diagnostics.Process MediaPlayer { get; set; }
+        private System.Diagnostics.Process MediaPlayer { get; set; }
 
 		private string MplayerBackend()
 		{
@@ -158,7 +237,15 @@ namespace LibMPlayerCommon
 			else if (this._mplayerBackend == MplayerBackends.X11)
             {
                 backend = "x11";
-            }
+			}
+			else if (this._mplayerBackend == MplayerBackends.Vdpau)
+			{
+				backend = "vdpau";
+			}
+			else if(this._mplayerBackend == MplayerBackends.XV)
+			{
+				backend = "xv";
+			}
 			else if (this._mplayerBackend == MplayerBackends.Quartz)
             {
                 backend = "quartz";
@@ -219,6 +306,9 @@ namespace LibMPlayerCommon
         {
             this.currentFilePath = filePath;
 
+            
+            
+
             if (this.MplayerRunning)
             {
                 LoadFile(filePath);
@@ -226,6 +316,7 @@ namespace LibMPlayerCommon
                 return;
             }
 
+            this._currentPostionTimer.Start();
 
             MediaPlayer.StartInfo.CreateNoWindow = true;
             MediaPlayer.StartInfo.UseShellExecute = false;
@@ -269,15 +360,15 @@ namespace LibMPlayerCommon
 			
             string backend = MplayerBackend();
 
-            MediaPlayer.StartInfo.Arguments = string.Format("-slave -quiet -idle -aspect 4/3 -v -vo {0} -wid {1} \"{2}\"", backend, this._wid, filePath);
-            MediaPlayer.StartInfo.FileName = BackendPrograms.MPlayer;
+            MediaPlayer.StartInfo.Arguments = string.Format("-slave -quiet -idle -aspect 4/3 -v -ontop -vo {0} -wid {1} \"{2}\"", backend, this._wid, filePath);
+            MediaPlayer.StartInfo.FileName = this._backendProgram.MPlayer;
 
             MediaPlayer.Start();
 
             this.CurrentStatus = MediaStatus.Playing;
 
             this.MplayerRunning = true;
-            this.mplayerProcessID = MediaPlayer.Id;
+            this._mplayerProcessID = MediaPlayer.Id;
 
             //System.IO.StreamWriter mw = MediaPlayer.StandardInput;
             //mw.AutoFlush = true;
@@ -349,6 +440,17 @@ namespace LibMPlayerCommon
             MediaPlayer.StandardInput.Flush();
         }
 
+        public void SetSize(int width, int height)
+        {
+            if (this.CurrentStatus != MediaStatus.Playing)
+            {
+                return;
+            }
+            MediaPlayer.StandardInput.WriteLine(string.Format("set_property width {0}", width));
+            MediaPlayer.StandardInput.WriteLine(string.Format("set_property height {0}", height));
+            MediaPlayer.StandardInput.Flush();
+        }
+
         /// <summary>
         /// Pause the current video.  If paused it will unpause.
         /// </summary>
@@ -385,8 +487,11 @@ namespace LibMPlayerCommon
         /// </summary>
         public void Stop()
         {
-            MediaPlayer.StandardInput.WriteLine("stop");
-            MediaPlayer.StandardInput.Flush();
+            if (this.CurrentStatus != MediaStatus.Stopped)
+            {
+                MediaPlayer.StandardInput.WriteLine("stop");
+                MediaPlayer.StandardInput.Flush();
+            }
             this.CurrentStatus = MediaStatus.Stopped;
         }
 
@@ -418,20 +523,37 @@ namespace LibMPlayerCommon
         private void LoadCurrentPlayingFileLength()
         {
             // This works even with streaming.
-            Discover file = new Discover(this.currentFilePath);
+            Discover file = new Discover(this.currentFilePath, this._backendProgram.MPlayer);
             this._totalTime = file.Length;
         }
 
 
-        public int CurrentPosition()
+        private void _currentPostionTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
+            if (this.CurrentStatus == MediaStatus.Playing)
+            {
+                MediaPlayer.StandardInput.WriteLine("get_time_pos");
+                MediaPlayer.StandardInput.Flush();
+            }
+        }
 
-            MediaPlayer.StandardInput.WriteLine("get_time_pos");
-            MediaPlayer.StandardInput.Flush();
+        /// <summary>
+        /// Get the current postion in the file being played.
+        /// </summary>
+        /// <remarks>It is highly recommended to use the CurrentPostion event instead.</remarks>
+        /// <returns></returns>
+        public int GetCurrentPosition()
+        {
+            if (this.CurrentStatus != MediaStatus.Stopped)
+            {
+                MediaPlayer.StandardInput.WriteLine("get_time_pos");
+                MediaPlayer.StandardInput.Flush();
 
-            // This is to give the HandleMediaPlayerOutputDataReceived enought time to process and set the currentPosition.
-            System.Threading.Thread.Sleep(100);
-            return this._currentPosition;
+                // This is to give the HandleMediaPlayerOutputDataReceived enought time to process and set the currentPosition.
+                System.Threading.Thread.Sleep(100);
+                return this._currentPosition;
+            }
+            return -1;
         }
 
         /// <summary>
@@ -478,9 +600,21 @@ namespace LibMPlayerCommon
         {
             Debug.Assert(volume >= 0 && volume <= 100);
 
-            MediaPlayer.StandardInput.WriteLine(string.Format("volume {0}", volume));
+            MediaPlayer.StandardInput.WriteLine(string.Format("volume {0} 1", volume));
             MediaPlayer.StandardInput.Flush();
 
+        }
+		
+		public void SwitchAudioTrack(int track)
+        {
+            MediaPlayer.StandardInput.WriteLine(string.Format("switch_audio {0}", track));
+            MediaPlayer.StandardInput.Flush();
+        }
+
+        public void SwitchSubtitle(int sub)
+        {
+            MediaPlayer.StandardInput.WriteLine(string.Format("sub_select  {0}", sub));
+            MediaPlayer.StandardInput.Flush();
         }
 
 
@@ -498,11 +632,16 @@ namespace LibMPlayerCommon
 
                 if (line.StartsWith("ANS_TIME_POSITION="))
                 {
-                    this._currentPosition =(int) float.Parse(line.Substring("ANS_TIME_POSITION=".Length));
+                    this._currentPosition =(int) Globals.FloatParse(line.Substring("ANS_TIME_POSITION=".Length));
+
+                    if (this.CurrentPosition != null)
+                    {
+                        this.CurrentPosition(this, new MplayerEvent(this._currentPosition));
+                    }
                 }
                 else if (line.StartsWith("ANS_length="))
                 {
-                    this._totalTime = (int)float.Parse(line.Substring("ANS_length=".Length));
+                    this._totalTime = (int)Globals.FloatParse(line.Substring("ANS_length=".Length));
                 }
                 else if (line.StartsWith("Exiting") || line.ToLower().StartsWith("eof code"))
                 {
@@ -512,7 +651,7 @@ namespace LibMPlayerCommon
                     }
                 }
 
-                System.Console.WriteLine(line);
+                //System.Console.WriteLine(line);
             }
         }
 

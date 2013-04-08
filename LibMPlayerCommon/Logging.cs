@@ -5,14 +5,14 @@ Copyright 2010 (C) Peter Gill <peter@majorsilence.com>
 This file is part of LibMPlayerCommon.
 
 LibMPlayerCommon is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3 of the License, or
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
 (at your option) any later version.
 
 LibMPlayerCommon is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
@@ -27,10 +27,20 @@ namespace LibMPlayerCommon
 {
     public class Logging
     {
+        // TODO: replace with real logging framework
+
         private static volatile Logging instance;
         private static object syncRoot = new Object();
 
-        private Logging() { }
+        private string filePath;
+
+
+        private Logging() 
+        { 
+            this.filePath = System.IO.Path.Combine(Globals.MajorSilenceMPlayerLocalAppDataDirectory, "MajorSilence-Debug.txt");
+            System.Diagnostics.Trace.Listeners.Add(new System.Diagnostics.TextWriterTraceListener(this.filePath));
+            System.Diagnostics.Trace.AutoFlush = true;
+        }
 
         public static Logging Instance
         {
@@ -47,6 +57,11 @@ namespace LibMPlayerCommon
                     }
                 }
 
+                if (System.IO.Directory.Exists(Globals.MajorSilenceMPlayerLocalAppDataDirectory) == false)
+                {
+                    System.IO.Directory.CreateDirectory(Globals.MajorSilenceMPlayerLocalAppDataDirectory);
+                }
+
                 return instance;
             }
         }
@@ -57,21 +72,11 @@ namespace LibMPlayerCommon
         }
         public void WriteLine(string msg, string category)
         {
+            string output = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + System.Environment.NewLine;
+            output += msg + System.Environment.NewLine;
+            output += System.Environment.NewLine + System.Environment.NewLine;
 
-            string filePath = System.IO.Path.Combine(Globals.MajorSilenceMPlayerLocalAppDataDirectory, "MajorSilence-Debug.txt");
-
-            if (System.IO.Directory.Exists(Globals.MajorSilenceMPlayerLocalAppDataDirectory) == false)
-            {
-                System.IO.Directory.CreateDirectory(Globals.MajorSilenceMPlayerLocalAppDataDirectory);
-            }
-
-
-
-            System.IO.File.AppendAllText(filePath, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + System.Environment.NewLine);
-            System.IO.File.AppendAllText(filePath, category + System.Environment.NewLine);
-            System.IO.File.AppendAllText(filePath, msg + System.Environment.NewLine);
-            System.IO.File.AppendAllText(filePath, System.Environment.NewLine + System.Environment.NewLine);
-
+            System.Diagnostics.Trace.WriteLine(output, category);
         }
 
         public void WriteLine(Exception value)

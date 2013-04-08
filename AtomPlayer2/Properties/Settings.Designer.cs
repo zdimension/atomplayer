@@ -22,5 +22,16 @@ namespace AtomPlayer.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::LibMPlayerCommon.MplayerBackends VideoRenderer {
+            get {
+                return ((global::LibMPlayerCommon.MplayerBackends)(this["VideoRenderer"]));
+            }
+            set {
+                this["VideoRenderer"] = value;
+            }
+        }
     }
 }

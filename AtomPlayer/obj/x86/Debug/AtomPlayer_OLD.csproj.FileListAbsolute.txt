@@ -1,0 +1,8 @@
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer\bin\Debug\AtomPlayer.exe
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer\bin\Debug\AtomPlayer.pdb
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer\obj\x86\Debug\AtomPlayer.FullScreen.resources
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer\obj\x86\Debug\AtomPlayer.MainWindow.resources
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer\obj\x86\Debug\AtomPlayer.Properties.Resources.resources
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer\obj\x86\Debug\AtomPlayer_OLD.csproj.GenerateResource.Cache
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer\obj\x86\Debug\AtomPlayer.exe
+C:\Users\Tom2\Documents\1-Documents\AtomPlayer\AtomPlayer\obj\x86\Debug\AtomPlayer.pdb

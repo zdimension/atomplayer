@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EE2D026E-FDBA-4638-AD9F-B995B0F70D0F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AtomPlayer</RootNamespace>
+    <AssemblyName>AtomPlayer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MediaSlider">
+      <HintPath>..\..\..\..\Downloads\MediaSlider\bin\Debug\MediaSlider.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DarkMenuStripRenderer.cs" />
+    <Compile Include="FullScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FullScreen.Designer.cs">
+      <DependentUpon>FullScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FullScreen.resx">
+      <DependentUpon>FullScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="obj\x86\Debug\AtomPlayer.FullScreen.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\AtomPlayer.MainWindow.resources" />
+    <EmbeddedResource Include="obj\x86\Debug\AtomPlayer.Properties.Resources.resources" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\README" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\util\charset.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\util\content_type.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\util\trim.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\101greatgoals.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\academicearth.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\arte.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\audioboo.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\bikeradar.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\blip.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\bloomberg.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\break.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\canalplus.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\cbsnews.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\charlierose.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\clipfish.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\collegehumor.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\dailymotion.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\empflix.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\foxnews.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\francetelevisions.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\funnyordie.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\gaskrank.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\globo.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\golem.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\guardian.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\imdb.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\keezmovies.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\liveleak.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\metacafe.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\mgnetwork.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\pluzz.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\pornhub.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\publicsenat.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\quvi\bit.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\quvi\const.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\quvi\url.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\quvi\util.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\README" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\redtube.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\sapo.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\sevenload.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\soundcloud.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\spankwire.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\spiegel.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\tagtele.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\tcmag.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\ted.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\theonion.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\tmunderground.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\tnaflix.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\totallynsfw.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\tube8.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\tvlux.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\videa.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\videobash.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\vimeo.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\xhamster.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\xvideos.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\yfrog.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\youjizz.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\lua\website\youtube.lua" />
+    <None Include="bin\Debug\mplayer\libquvi-scripts\version" />
+    <None Include="bin\Debug\mplayer\mplayer\config" />
+    <None Include="bin\Debug\mplayer\mplayer\subfont.ttf" />
+    <None Include="obj\x86\Debug\AtomPlayer.csproj.GenerateResource.Cache" />
+    <None Include="obj\x86\Debug\AtomPlayer.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\x86\Debug\build.force" />
+    <None Include="obj\x86\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\x86\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Resources\pause.png" />
+    <EmbeddedResource Include="Resources\pause.xcf" />
+    <EmbeddedResource Include="Resources\pausedown.png" />
+    <EmbeddedResource Include="Resources\pausedown.xcf" />
+    <EmbeddedResource Include="Resources\pausehover.png" />
+    <EmbeddedResource Include="Resources\pausehover.xcf" />
+    <EmbeddedResource Include="Resources\play.png" />
+    <EmbeddedResource Include="Resources\play.xcf" />
+    <EmbeddedResource Include="Resources\playdown.png" />
+    <EmbeddedResource Include="Resources\playdown.xcf" />
+    <EmbeddedResource Include="Resources\playhover.png" />
+    <EmbeddedResource Include="Resources\playhover.xcf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\AtomPlayer.exe" />
+    <Content Include="bin\Debug\AtomPlayer.pdb" />
+    <Content Include="bin\Debug\AtomPlayer.vshost.exe" />
+    <Content Include="bin\Debug\MediaSlider.dll" />
+    <Content Include="bin\Debug\MPlayer.DotNet.dll" />
+    <Content Include="bin\Debug\MPlayer.DotNet.pdb" />
+    <Content Include="bin\Debug\mplayer\mplayer2.exe" />
+    <Content Include="obj\x86\Debug\AtomPlayer.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\x86\Debug\AtomPlayer.exe" />
+    <Content Include="obj\x86\Debug\AtomPlayer.pdb" />
+    <Content Include="obj\x86\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
